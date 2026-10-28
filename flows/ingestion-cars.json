@@ -1,0 +1,11 @@
+{
+  "flow" : {
+    "createdTimestamp" : 1793211872243,
+    "description" : "Groupe Ingestion cars du TP2 (CSV vers MySQL, MinIO, quarantaine)",
+    "identifier" : "ingestion-cars",
+    "lastModifiedTimestamp" : 1793211872243,
+    "name" : "ingestion-cars",
+    "versionCount" : 0
+  },
+  "latest" : false
+}
