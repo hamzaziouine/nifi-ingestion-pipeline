@@ -1,0 +1,76 @@
+# Backing services for the flow. NiFi itself runs from the binary distribution
+# on the host (see README), so every port below is published on localhost.
+#
+#   cp .env.example .env      # then change the passwords
+#   docker compose up -d
+#   docker compose down       # keeps the data volumes; add -v to wipe them
+
+name: nifi-ingestion
+
+services:
+  mysql:
+    image: mysql:8.4
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?set MYSQL_ROOT_PASSWORD in .env}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-nifi_test}
+      MYSQL_USER: ${MYSQL_USER:-nifi}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?set MYSQL_PASSWORD in .env}
+    volumes:
+      - ./infra/mysql:/docker-entrypoint-initdb.d:ro
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      # TCP on 127.0.0.1, not the socket: on first boot the image runs a temporary
+      # server without networking, and a socket ping reports healthy too early.
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p\"$$MYSQL_ROOT_PASSWORD\" --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+
+  phpmyadmin:
+    image: phpmyadmin:5.2
+    ports:
+      - "${PHPMYADMIN_PORT:-8081}:80"
+    environment:
+      PMA_HOST: mysql
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: unless-stopped
+
+  minio:
+    # MinIO stopped publishing community images; pgsty/minio is a maintained build
+    # of the same server, pinned to a release.
+    image: pgsty/minio:RELEASE.2026-08-04T00-00-00Z
+    command: server /data --console-address ":9001"
+    ports:
+      - "${MINIO_API_PORT:-9000}:9000"
+      - "${MINIO_CONSOLE_PORT:-9001}:9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:?set MINIO_ROOT_USER in .env}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:?set MINIO_ROOT_PASSWORD in .env}
+    volumes:
+      - minio-data:/data
+    restart: unless-stopped
+
+  # One-shot job: creates the bucket and a NiFi user that can only write to it.
+  minio-init:
+    image: pgsty/mc:RELEASE.2026-10-26T00-00-00Z
+    depends_on:
+      - minio
+    entrypoint: ["/bin/sh", "/init/init.sh"]
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+      S3_BUCKET: ${S3_BUCKET:-bronze}
+      NIFI_S3_ACCESS_KEY: ${NIFI_S3_ACCESS_KEY:?set NIFI_S3_ACCESS_KEY in .env}
+      NIFI_S3_SECRET_KEY: ${NIFI_S3_SECRET_KEY:?set NIFI_S3_SECRET_KEY in .env}
+    volumes:
+      - ./infra/minio:/init:ro
+    restart: "no"
+
+volumes:
+  mysql-data:
+  minio-data:
