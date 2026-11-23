@@ -1,0 +1,112 @@
+[
+  {
+    "mpg": 18.0,
+    "cylinders": 8.0,
+    "displacement": 307.0,
+    "horsepower": 130.0,
+    "weight": 3504.0,
+    "acceleration": 12.0,
+    "model year": 70.0,
+    "origin": 1,
+    "car name": "chevrolet chevelle malibu"
+  },
+  {
+    "mpg": 14.0,
+    "cylinders": 8.0,
+    "displacement": 351.0,
+    "horsepower": 153.0,
+    "weight": 4154.0,
+    "acceleration": 13.5,
+    "model year": 71.0,
+    "origin": 1,
+    "car name": "ford galaxie 500"
+  },
+  {
+    "mpg": 22.0,
+    "cylinders": 4.0,
+    "displacement": 122.0,
+    "horsepower": 86.0,
+    "weight": 2395.0,
+    "acceleration": 16.0,
+    "model year": 72.0,
+    "origin": 1,
+    "car name": "ford pinto (sw)"
+  },
+  {
+    "mpg": 19.0,
+    "cylinders": 4.0,
+    "displacement": 121.0,
+    "horsepower": 112.0,
+    "weight": 2868.0,
+    "acceleration": 15.5,
+    "model year": 73.0,
+    "origin": 2,
+    "car name": "volvo 144ea"
+  },
+  {
+    "mpg": 17.0,
+    "cylinders": 6.0,
+    "displacement": 231.0,
+    "horsepower": 110.0,
+    "weight": 3907.0,
+    "acceleration": 21.0,
+    "model year": 75.0,
+    "origin": 1,
+    "car name": "buick century"
+  },
+  {
+    "mpg": 18.0,
+    "cylinders": 6.0,
+    "displacement": 250.0,
+    "horsepower": 78.0,
+    "weight": 3574.0,
+    "acceleration": 21.0,
+    "model year": 76.0,
+    "origin": 1,
+    "car name": "ford granada ghia"
+  },
+  {
+    "mpg": 30.5,
+    "cylinders": 4.0,
+    "displacement": 97.0,
+    "horsepower": 78.0,
+    "weight": 2190.0,
+    "acceleration": 14.1,
+    "model year": 77.0,
+    "origin": 2,
+    "car name": "volkswagen dasher"
+  },
+  {
+    "mpg": 21.5,
+    "cylinders": 6.0,
+    "displacement": 231.0,
+    "horsepower": 115.0,
+    "weight": 3245.0,
+    "acceleration": 15.4,
+    "model year": 79.0,
+    "origin": 1,
+    "car name": "pontiac lemans v6"
+  },
+  {
+    "mpg": 37.0,
+    "cylinders": 4.0,
+    "displacement": 119.0,
+    "horsepower": 92.0,
+    "weight": 2434.0,
+    "acceleration": 15.0,
+    "model year": 80.0,
+    "origin": 3,
+    "car name": "datsun 510 hatchback"
+  },
+  {
+    "mpg": 31.0,
+    "cylinders": 4.0,
+    "displacement": 119.0,
+    "horsepower": 82.0,
+    "weight": 2720.0,
+    "acceleration": 19.4,
+    "model year": 82.0,
+    "origin": 4,
+    "car name": "chevy s-10"
+  }
+]
