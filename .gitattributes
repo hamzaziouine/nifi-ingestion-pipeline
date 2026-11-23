@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.png binary
+
+# Flow snapshots are committed by NiFi's GitHub registry client byte for byte
+# (CRLF included). Never normalise them, or the next NiFi commit shows a full diff.
+flows/*.json -text

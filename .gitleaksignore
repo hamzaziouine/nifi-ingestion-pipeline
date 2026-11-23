@@ -1,0 +1,7 @@
+# False positive: "AWS Credentials Provider Service" holds the UUID of the
+# "Identifiants MinIO" controller service, not a key. Real keys only live in
+# sensitive parameters, which NiFi never exports (see tests/test_flow_contract.py).
+0b1fbe6b1848b9d03b747d763ff6b4446c404861:flows/ingestion-cars.json:generic-api-key:3487
+0b1fbe6b1848b9d03b747d763ff6b4446c404861:flows/ingestion-cars.json:generic-api-key:3753
+flows/ingestion-cars.json:generic-api-key:3487
+flows/ingestion-cars.json:generic-api-key:3753

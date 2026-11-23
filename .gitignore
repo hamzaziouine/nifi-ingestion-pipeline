@@ -1,0 +1,18 @@
+# local secrets
+.env
+
+# python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# raw download used by scripts/make_sample_data.py --source
+auto-mpg.data
+
+# editors / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
