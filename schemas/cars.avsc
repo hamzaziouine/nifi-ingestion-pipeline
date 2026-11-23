@@ -1,0 +1,17 @@
+{
+  "type": "record",
+  "name": "car",
+  "namespace": "io.github.hamzaziouine.ingestion",
+  "doc": "One row of the cars feed. Reference copy of the schema embedded in the 'CSVReader cars' controller service; tests/test_flow_contract.py keeps the two in sync.",
+  "fields": [
+    {"name": "Car",          "type": "string", "doc": "Make and model, title case"},
+    {"name": "MPG",          "type": "double", "doc": "Fuel economy, miles per US gallon"},
+    {"name": "Cylinders",    "type": "int"},
+    {"name": "Displacement", "type": "double", "doc": "Cubic inches"},
+    {"name": "Horsepower",   "type": ["null", "int"], "default": null, "doc": "Missing for a few cars in the source data"},
+    {"name": "Weight",       "type": "int", "doc": "Pounds"},
+    {"name": "Acceleration", "type": "double", "doc": "Seconds from 0 to 60 mph"},
+    {"name": "Model",        "type": "int", "doc": "Model year, two digits (70 = 1970)"},
+    {"name": "Origin",       "type": {"type": "enum", "name": "origin", "symbols": ["US", "Europe", "Japan"]}}
+  ]
+}
